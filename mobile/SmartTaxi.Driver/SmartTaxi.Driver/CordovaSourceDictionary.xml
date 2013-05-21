@@ -4,6 +4,9 @@
     <FilePath Value="www\cordova-2.6.0.js"/>
     <FilePath Value="www\img\logo.png"/>
     <FilePath Value="www\js\index.js"/>
+    <FilePath Value="www\js\ST.Connector.js"/>
+    <FilePath Value="www\js\ST.Events.js"/>
+    <FilePath Value="www\js\ST.Storage.js"/>
     <FilePath Value="www\css\index.css"/>
     <FilePath Value="www\index.html"/>
 </CordovaSourceDictionary>

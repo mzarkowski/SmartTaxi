@@ -104,6 +104,10 @@
     <Content Include="www\cordova-2.6.0.js" />
     <Content Include="www\img\logo.png" />
     <Content Include="www\js\index.js" />
+    <Content Include="www\js\jquery-1.9.1.min.js" />
+    <Content Include="www\js\ST.Connector.js" />
+    <Content Include="www\js\ST.Events.js" />
+    <Content Include="www\js\ST.Storage.js" />
     <None Include="BuildManifestProcessor.js" />
     <Content Include="www\css\index.css" />
     <Content Include="www\index.html">
