@@ -1,12 +1,9 @@
-var express = require('express');
- 
+var express = require('express'),
+wines = require('./routes/drivers');
 var app = express();
 
-app.get('/drivers', function(req, res) {
-	res.send([{name:'driver1'}, {name:'driver2'}]);
-	});
-app.get('/', function(req, res) {
-	res.send([{name:'driver1'}, {name:'driver2'}]);
-	});
+app.get('/drivers', drivers.findAll);
+app.get('/drivers/:id', drivers.findById);
+
 app.listen(3000);
 console.log('Listening on port 3000...');
