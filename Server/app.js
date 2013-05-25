@@ -12,14 +12,14 @@ app.use(express.bodyParser());
 });
  
 /*
- * T³umaczenie œcie¿ek
+ * TÅ‚umaczenie Å›cieÅ¼ek
  */
 app.get('/drivers', driver.findAll);
 app.get('/drivers/:id', driver.findById);
-app.post('/drivers', driver.addWine);
-app.put('/drivers/:id', driver.updateWine);
-//JShint nie chcia³ wspó³pracowaæ z DELETE (reserved world)
-app.del('/drivers/:id', driver.deleteWine);
+app.post('/drivers', driver.addDriver);
+app.put('/drivers/:id', driver.updateDriver);
+//JShint nie chciaÅ‚ wspÃ³pracowaÄ‡ z DELETE (reserved world)
+app.del('/drivers/:id', driver.deleteDriver);
 
 
 app.listen(3000);

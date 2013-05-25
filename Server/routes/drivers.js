@@ -13,11 +13,11 @@ db = new Db('smartTaxi', server);
 
 db.open(function(err, db) {
 	if(!err) {
-		console.log("Po³¹czono z baz¹");
+		console.log("PoÅ‚Ä…czono z bazÄ…");
 		db.collection('drivers', {strict:true}, function(err, collection) {
 			if (err) {
-				//Na potrzeby testów aplikacji
-				console.log("Brak kierowców w bazie. Uzupe³niamy danymi.");
+				//Na potrzeby testÃ³w aplikacji
+				console.log("Brak kierowcÃ³w w bazie. UzupeÅ‚niamy danymi.");
 				insertDB();
 			}
 		});
@@ -91,7 +91,7 @@ exports.deleteDriver = function(req, res) {
 };
  
 /* 
- * Przyk³adowe dane w razie czystki w bazie.
+ * PrzykÅ‚adowe dane w razie czystki w bazie.
  */
 var insertDB = function() {
  
@@ -100,13 +100,17 @@ var drivers = [
 	name: "Mateusz",
 	year: "2009",
 	brand: "Polonez",
-	bid: "5"
+	bid: "5",
+	isActive: "true",
+	isFree: "false"
 },
 {
 	name: "Zenon",
 	year: "2002",
 	brand: "Audi A6",
-	bid: "4"
+	bid: "4",
+	isActive: "true",
+	isFree: "false"
 }];
  
 db.collection('drivers', function(err, collection) {
