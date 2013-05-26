@@ -41,6 +41,14 @@ exports.findAll = function(req, res) {
 		});
 	});
 };
+
+exports.findAvailableAndFree = function(req, res) {
+	db.collection('drivers', function(err, collection) {
+		collection.find({isFree: "false", isActive: "true"}).toArray(function(err, items) {
+			res.send(items);
+		});
+	});
+	};	
  
 exports.addDriver = function(req, res) {
 	var driver = req.body;
@@ -102,7 +110,8 @@ var drivers = [
 	brand: "Polonez",
 	bid: "5",
 	isActive: "true",
-	isFree: "false"
+	isFree: "false",
+	position: ""
 },
 {
 	name: "Zenek",
@@ -110,7 +119,8 @@ var drivers = [
 	brand: "Audi A6",
 	bid: "4",
 	isActive: "true",
-	isFree: "false"
+	isFree: "false",
+	position: ""
 },
 {
 	name: "Zdzisiek",
@@ -118,7 +128,8 @@ var drivers = [
 	brand: "Volkswagen sharan",
 	bid: "6",
 	isActive: "true",
-	isFree: "false"
+	isFree: "false",
+	position: ""
 },
 {
 	name: "Zygmunt",
@@ -126,7 +137,8 @@ var drivers = [
 	brand: "Volvo v40",
 	bid: "6",
 	isActive: "true",
-	isFree: "false"
+	isFree: "false",
+	position: ""
 },
 {
 	name: "Ziemowit",
@@ -134,7 +146,8 @@ var drivers = [
 	brand: "Volkswagen sharan",
 	bid: "6",
 	isActive: "true",
-	isFree: "false"
+	isFree: "false",
+	position: ""
 }
 ];
  

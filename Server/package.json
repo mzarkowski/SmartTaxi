@@ -6,6 +6,8 @@
   "repository": "",
   "author": "",
   "dependencies": {
-	  "express": "3.x"
+	  "express": "3.x",
+	  "socket.io" : "0.9.x",
+	  "mongodb": "1.1.x",
 	  }
 }

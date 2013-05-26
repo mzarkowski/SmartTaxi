@@ -8,26 +8,17 @@
         <title>SmartTaxi</title>
     </head>
     <body>
-        <header>
-            <nav>
-                
-            </nav>  
-        </header>
-        <section>
-            
-        </section>
-        <footer>
-            
-        </footer>
-        <!--Bibilioteki zewnętrzne-->
-        <script type="text/javascript" src="js/lib/cordova-2.6.0.js"></script>
-        <script type="text/javascript" src="js/lib/jquery-1.9.1.min.js"></script>
-        <script type="text/javascript" src="js/lib/backbone-min.js"></script>
-        <script type="text/javascript" src="js/lib/underscore-min.js"></script>
         
-        <!--Moje skrypty-->
-        <script type="text/javascript">
-            
+    <div id="history"></div>
+
+        <script type="text/javascript" src="js/lib/cordova-2.6.0.js"></script>
+    <script type="text/javascript" src="js/lib/jquery-1.9.1.min.js"></script>
+    
+    <!--globalne skrypty-->
+        <script type="text/javascript" src="js/ST.Settings.js"></script>
+        <script type="text/javascript" src="js/ST.Ajax.js"></script>
+        <script>
+            ST.Ajax.getDrivers();
         </script>
     </body>
 </html>

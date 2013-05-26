@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartTaxi.Client", "SmartTaxi.Client\SmartTaxi.Client.csproj", "{3677C1B7-D68B-4CF9-BF8A-E869D437A6DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartTaxi.Driver", "..\SmartTaxi.Driver\SmartTaxi.Driver\SmartTaxi.Driver.csproj", "{1DC1AF8C-F29D-4D6E-B405-2F48E44C13F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,12 @@ Global
 		{3677C1B7-D68B-4CF9-BF8A-E869D437A6DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3677C1B7-D68B-4CF9-BF8A-E869D437A6DF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3677C1B7-D68B-4CF9-BF8A-E869D437A6DF}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{1DC1AF8C-F29D-4D6E-B405-2F48E44C13F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DC1AF8C-F29D-4D6E-B405-2F48E44C13F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DC1AF8C-F29D-4D6E-B405-2F48E44C13F2}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{1DC1AF8C-F29D-4D6E-B405-2F48E44C13F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DC1AF8C-F29D-4D6E-B405-2F48E44C13F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DC1AF8C-F29D-4D6E-B405-2F48E44C13F2}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

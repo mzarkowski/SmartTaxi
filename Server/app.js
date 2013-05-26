@@ -1,26 +1,49 @@
 var express = require('express'),
-driver = require('./routes/drivers');
+path = require('path'),
+driver = require('./routes/drivers'),
+io = require('socket.io'),
+http = require('http');
  
 var app = express();
- 
-/*
- * Konfiguracja expressa
- */
+
 app.configure(function () {
-app.use(express.logger('dev')); /* 'default', 'short', 'tiny', 'dev' */
+app.set('port', process.env.PORT || 3000);
+app.use(express.logger('dev'));
 app.use(express.bodyParser());
+app.use(express.static(path.join(__dirname, 'public')));
 });
  
+var server = http.createServer(app);
+io = io.listen(server);
+ 
+server.listen(app.get('port'), function () {
+	console.log("Express server listening on port " + app.get('port'));
+	});
+
 /*
  * Tłumaczenie ścieżek
  */
-app.get('/drivers', driver.findAll);
-app.get('/drivers/:id', driver.findById);
-app.post('/drivers', driver.addDriver);
-app.put('/drivers/:id', driver.updateDriver);
+app.get('/api/drivers', driver.findAll);
+app.get('/api/drivers/available', driver.findAvailableAndFree);
+app.get('/api/drivers/:id', driver.findById);
+app.post('/api/drivers', driver.addDriver);
+app.put('/api/drivers/:id', driver.updateDriver);
 //JShint nie chce wspópracować z DELETE (reserved world)
-app.del('/drivers/:id', driver.deleteDriver);
+app.del('/api/drivers/:id', driver.deleteDriver);
 
 
-app.listen(3000);
-console.log('Listening on port 3000...');
+io.sockets.on('connection', function (socket) {
+	 
+	socket.on('message', function (message) {
+	console.log("Got a message: " + message);
+	ip = socket.handshake.address.address;
+	url = message;
+	io.sockets.emit('pageview', { 'connections': Object.keys(io.connected).length, 'ip': '***.***.***.' + ip.substring(ip.lastIndexOf('.') + 1), 'url': url, 'xdomain': socket.handshake.xdomain, 'timestamp': new Date()});
+	});
+	 
+	socket.on('disconnect', function () {
+	console.log("Socket disconnected");
+	io.sockets.emit('pageview', { 'connections': Object.keys(io.connected).length});
+	});
+	 
+	});
