@@ -18,7 +18,7 @@ app.get('/drivers', driver.findAll);
 app.get('/drivers/:id', driver.findById);
 app.post('/drivers', driver.addDriver);
 app.put('/drivers/:id', driver.updateDriver);
-//JShint nie chciał wspópracować z DELETE (reserved world)
+//JShint nie chce wspópracować z DELETE (reserved world)
 app.del('/drivers/:id', driver.deleteDriver);
 
 

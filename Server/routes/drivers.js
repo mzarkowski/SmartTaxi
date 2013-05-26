@@ -97,7 +97,7 @@ var insertDB = function() {
  
 var drivers = [
 {
-	name: "Mateusz",
+	name: "Zbyszek",
 	year: "2009",
 	brand: "Polonez",
 	bid: "5",
@@ -105,13 +105,38 @@ var drivers = [
 	isFree: "false"
 },
 {
-	name: "Zenon",
+	name: "Zenek",
 	year: "2002",
 	brand: "Audi A6",
 	bid: "4",
 	isActive: "true",
 	isFree: "false"
-}];
+},
+{
+	name: "Zdzisiek",
+	year: "2000",
+	brand: "Volkswagen sharan",
+	bid: "6",
+	isActive: "true",
+	isFree: "false"
+},
+{
+	name: "Zygmunt",
+	year: "2001",
+	brand: "Volvo v40",
+	bid: "6",
+	isActive: "true",
+	isFree: "false"
+},
+{
+	name: "Ziemowit",
+	year: "2000",
+	brand: "Volkswagen sharan",
+	bid: "6",
+	isActive: "true",
+	isFree: "false"
+}
+];
  
 db.collection('drivers', function(err, collection) {
 collection.insert(drivers, {safe:true}, function(err, result) {});
