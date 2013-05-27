@@ -8,26 +8,20 @@
         <title>SmartTaxi</title>
     </head>
     <body>
-        <div id="login">
-            <h1>Zaloguj się</h1>
-            <div id="loginForm">
-                <form>
-                    <p>Podaj swój login</p>
-                    <input id="loginInput" type="text" name="login" />
-                    <input type="submit" value="Zaloguj"/>
-                </form>
-            </div>
-        </div>
         
+        <p id="coords">Tu będą coordsy</p>
+    <div id="availableDrivers"></div>
 
-        <script type="text/javascript" src="cordova-2.6.0.js"></script>
-        <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="js/lib/cordova-2.6.0.js"></script>
+    <script type="text/javascript" src="js/lib/jquery-1.9.1.min.js"></script>
+    
+    <!--globalne skrypty-->
+        <script type="text/javascript" src="js/ST.Settings.js"></script>
+        <script type="text/javascript" src="js/ST.Ajax.js"></script>
+        <script type="text/javascript" src="js/ST.Geolocation.js"></script>
+        <script type="text/javascript" src="http://localhost:3000/socket.io/socket.io.js"></script>
+
+        <!--Start aplikacji-->
         <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript" src="js/ST.Events.js"></script>
-        <script type="text/javascript" src="js/ST.Connector.js"></script>
-        <script type="text/javascript" src="js/ST.Storage.js"></script>
-        <script type="text/javascript">
-            
-        </script>
     </body>
 </html>

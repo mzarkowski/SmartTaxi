@@ -105,9 +105,17 @@
     <Content Include="www\img\logo.png" />
     <Content Include="www\js\index.js" />
     <Content Include="www\js\jquery-1.9.1.min.js" />
+    <Content Include="www\js\lib\backbone-min.js" />
+    <Content Include="www\js\lib\cordova-2.6.0.js" />
+    <Content Include="www\js\lib\jquery-1.9.1.min.js" />
+    <Content Include="www\js\lib\underscore-min.js" />
+    <Content Include="www\js\main.js" />
+    <Content Include="www\js\router.js" />
+    <Content Include="www\js\ST.Ajax.js" />
     <Content Include="www\js\ST.Connector.js" />
     <Content Include="www\js\ST.Events.js" />
-    <Content Include="www\js\ST.Storage.js" />
+    <Content Include="www\js\ST.Settings.js" />
+    <Content Include="www\js\ST.Geolocation.js" />
     <None Include="BuildManifestProcessor.js" />
     <Content Include="www\css\index.css" />
     <Content Include="www\index.html">
@@ -121,6 +129,7 @@
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
     </None>
+    <None Include="www\img\Thumbs.db" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ApplicationIcon.png">

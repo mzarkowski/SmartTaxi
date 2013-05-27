@@ -6,9 +6,25 @@ http = require('http');
  
 var app = express();
 
+/*
+ * Umożliwienie CORS
+ */
+var allowCrossDomain = function(req, res, next) {
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+	res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+	if ('OPTIONS' == req.method) {
+	res.send(200);
+	}
+	else {
+	next();
+	}
+};
+	
 app.configure(function () {
 app.set('port', process.env.PORT || 3000);
 app.use(express.logger('dev'));
+app.use(allowCrossDomain);
 app.use(express.bodyParser());
 app.use(express.static(path.join(__dirname, 'public')));
 });

@@ -44,7 +44,7 @@ exports.findAll = function(req, res) {
 
 exports.findAvailableAndFree = function(req, res) {
 	db.collection('drivers', function(err, collection) {
-		collection.find({isFree: "false", isActive: "true"}).toArray(function(err, items) {
+		collection.find({isFree: "true", isActive: "true"}).toArray(function(err, items) {
 			res.send(items);
 		});
 	});
