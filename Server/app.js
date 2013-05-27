@@ -48,18 +48,12 @@ app.put('/api/drivers/:id', driver.updateDriver);
 app.del('/api/drivers/:id', driver.deleteDriver);
 
 
-io.sockets.on('connection', function (socket) {
-	 
-	socket.on('message', function (message) {
-	console.log("Got a message: " + message);
-	ip = socket.handshake.address.address;
-	url = message;
-	io.sockets.emit('pageview', { 'connections': Object.keys(io.connected).length, 'ip': '***.***.***.' + ip.substring(ip.lastIndexOf('.') + 1), 'url': url, 'xdomain': socket.handshake.xdomain, 'timestamp': new Date()});
-	});
-	 
-	socket.on('disconnect', function () {
-	console.log("Socket disconnected");
-	io.sockets.emit('pageview', { 'connections': Object.keys(io.connected).length});
-	});
-	 
-	});
+io.set('log level', 1);
+
+io.sockets.on('connection', function(socket){
+  //send data to client
+  setInterval(function(){
+console.log("Sending data ");
+    io.sockets.emit('date', {'date': '221'});
+  }, 1000);
+});

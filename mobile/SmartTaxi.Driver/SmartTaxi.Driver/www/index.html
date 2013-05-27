@@ -10,6 +10,7 @@
     <body>
         
         <p id="coords">Tu będą coordsy</p>
+        <p id="message">Message</p>
     <div id="availableDrivers"></div>
 
         <script type="text/javascript" src="js/lib/cordova-2.6.0.js"></script>
@@ -23,5 +24,14 @@
 
         <!--Start aplikacji-->
         <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+		$(function () {
+            var socket = io.connect("http://localhost:3000");
+
+            socket.on('date', function (data) {
+                $('#message').text(data.date);
+            });
+		});
+        </script>
     </body>
 </html>
