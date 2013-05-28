@@ -13,7 +13,7 @@
         <p id="message">Message</p>
     <div id="availableDrivers"></div>
 
-        <script type="text/javascript" src="js/lib/cordova-2.6.0.js"></script>
+        <script type="text/javascript" src="js/lib/cordova-2.3.0.js"></script>
     <script type="text/javascript" src="js/lib/jquery-1.9.1.min.js"></script>
     
     <!--globalne skrypty-->
@@ -21,16 +21,12 @@
         <script type="text/javascript" src="js/ST.Ajax.js"></script>
         <script type="text/javascript" src="js/ST.Geolocation.js"></script>
         <script type="text/javascript" src="http://localhost:3000/socket.io/socket.io.js"></script>
-
+		<script type="text/javascript" src="js/ST.Socket.js"></script>
         <!--Start aplikacji-->
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
 		$(function () {
-            var socket = io.connect("http://localhost:3000");
 
-            socket.on('date', function (data) {
-                $('#message').text(data.date);
-            });
 		});
         </script>
     </body>

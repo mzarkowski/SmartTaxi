@@ -19,10 +19,14 @@ ST.Geolocation.onSuccess = function (position) {
     } else {
         //aktualizacja pozycji
         ST.Geolocation.latitude = position.coords.latitude;
-        ST.Geolocation.longitude = position.coords.longitude;
-        ST.Geolocation.accuracy = position.coords.accuracy;
         ST.Geolocation.minAccuracy = ST.Geolocation.accuracy;
         $('#coords').text(ST.Geolocation.latitude);
+		ST.Socket.socket.emit('updateDriverCoords', { driverId: '1234', longitude: position.coords.longitude, latitude: position.coords.latitude});
+		/*
+        ST.Socket.socket.on('date', function (data) {
+                $('#message').text(data.date);
+        });
+		*/
     }
 };
 

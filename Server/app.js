@@ -6,9 +6,7 @@ http = require('http');
  
 var app = express();
 
-/*
- * Umożliwienie CORS
- */
+/* CORS */
 var allowCrossDomain = function(req, res, next) {
 	res.header('Access-Control-Allow-Origin', '*');
 	res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -51,9 +49,17 @@ app.del('/api/drivers/:id', driver.deleteDriver);
 io.set('log level', 1);
 
 io.sockets.on('connection', function(socket){
-  //send data to client
+	
+	socket.on('driverLoggedIn', function(data){
+		//zmieniamy status na dostępny
+		console.log(data);
+	});
+	
+	socket.on('updateDriverCoords', function(data){
+		console.log(data);
+	});
+	
   setInterval(function(){
-console.log("Sending data ");
-    io.sockets.emit('date', {'date': '221'});
-  }, 1000);
+    io.sockets.emit('date', {'date': new Date()});
+  }, 10000);
 });
