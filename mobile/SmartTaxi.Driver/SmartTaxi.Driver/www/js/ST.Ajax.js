@@ -5,7 +5,7 @@ ST.Ajax = ST.Ajax || {};
 ST.Ajax.send = function (url, method, parm, callBack) {
     $.ajax({
         type: method,
-        url: "http://localhost:3000/api/drivers/available",
+        url: url,
         data: JSON.stringify(parm),
         crossDomain: true,
         contentType: "application/json;charset=utf-8",
@@ -13,26 +13,6 @@ ST.Ajax.send = function (url, method, parm, callBack) {
         statusCode: {
             201: function () {
                 callBack();
-            },
-            401: function () {
-                //alert(K.Language.translateWord[lang][14]);
-            },
-            403: function () {
-                //alert(K.Language.translateWord[lang][15]);
-            },
-            404: function () {
-                //alert(K.Language.translateWord[lang][16]);
-            },
-            500: function () {
-                $('#PostNotification').removeClass('hidden');
-                $('#reportInProgress').addClass('hidden');
-                //alert(K.Language.translateWord[lang][17]);
-            },
-            502: function () {
-                //alert(K.Language.translateWord[lang][18]);
-            },
-            503: function () {
-                //alert(K.Language.translateWord[lang][19]);
             }
         },
         success: function (result) {
@@ -46,14 +26,35 @@ ST.Ajax.send = function (url, method, parm, callBack) {
 };
 
 ST.Ajax.getDrivers = function () {
-    return ST.Ajax.send("drivers/available", "GET", '', function (data) {
+    return ST.Ajax.send("http://localhost:3000/api/drivers/available", "GET", '', function (data) {
         $.each(data, function (i, value) {
-            $('#availableDrivers').append('<div class="driversItem list' + i + '"><div class="driverName"></div><div class="driverCar"></div><div class="driverBid"></div><div class="driverTimeEstimate"></div><div class="historyUrl"></div></div>');
-            $('.list' + i + ' .driverName').append('<p>' + data[i].name + '</p>');
-            $('.list' + i + ' .driverCar').append('<p>' + data[i].brand + ', ' + data[i].year + 'rok</p>');
-            $('.list' + i + ' .driverBid').append('<p> Stawka: ' + data[i].bid + '</p>');
-            $('.list' + i + ' .driverTimeEstimate').append('<p> Szacowany czas przyjazdu : ' + data[i].bid + '</p>');
+            $('#availableDrivers').append('<div class="driversItem list' + i + ' driversItembackground" onclick="chooseDriver(this)"><div class="photo"><img src="img/person.png" alt="Taxi" /></div><div class="driverName"></div><div class="driverCar"></div><div class="driverBid"></div><div class="driverTimeEstimate"></div><div class="historyUrl"></div></div>');
+            $('.list' + i + ' .driverName').append('' + data[i].name + '');
+            $('.list' + i + ' .driverCar').append('' + data[i].brand + ', ' + data[i].year + '');
+            $('.list' + i + ' .driverBid').append(' Stawka: ' + data[i].bid + ' zł');
+            $('.list' + i + ' .driverTimeEstimate').append('Obliczam czas...');
             
         });
     });
 };
+
+ST.Ajax.calculateTime = function () {
+	    return ST.Ajax.send("http://maps.googleapis.com/maps/api/distancematrix/json?origins=Vancouver+BC|Seattle&destinations=San+Francisco|Victoria+BC&mode=bicycling&language=fr-FR&sensor=false", "GET", '', function (data) {
+	        ST.Drivers.coordsArray.removeAll();
+	        $.each(data, function (i, value) {
+            $('#availableDrivers').append('<div class="driversItem list' + i + ' driversItembackground" onclick="chooseDriver(this)"><div class="photo"><img src="img/person.png" alt="Taxi" /></div><div class="driverName"></div><div class="driverCar"></div><div class="driverBid"></div><div class="driverTimeEstimate"></div><div class="historyUrl"></div></div>');
+            $('.list' + i + ' .driverName').append('' + data[i].name + '');
+            $('.list' + i + ' .driverCar').append('' + data[i].brand + ', ' + data[i].year + '');
+            $('.list' + i + ' .driverBid').append(' Stawka: ' + data[i].bid + ' zł');
+            $('.list' + i + ' .driverTimeEstimate').append('Obliczam czas...');
+            ST.Drivers.coordsArray.push({ latitude: data[i].coords.latitude, longitude: data[i].coords.longitude });
+	        });
+	        alert(ST.Drivers.coordsArray);
+    });
+};
+
+function chooseDriver(elem) {
+	$(elem).siblings().removeClass('driversItembackgroundSelected').addClass('driversItembackground');
+    $(elem).removeClass('driversItembackground');
+	$(elem).addClass('driversItembackgroundSelected');
+}

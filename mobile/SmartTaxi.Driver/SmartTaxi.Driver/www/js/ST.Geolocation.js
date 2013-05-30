@@ -2,7 +2,6 @@
 ST.Geolocation = ST.Geolocation || {};
 ST.Geolocation.minAccuracy = 50.0;
 ST.Geolocation.accuracy = ST.Geolocation.minNetworkAccuracy + 1;
-ST.Geolocation.getPositionFrequency = 1000;
 
 ST.Geolocation.getPosition = function () {
     var options = {};

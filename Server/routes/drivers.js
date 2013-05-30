@@ -110,8 +110,11 @@ var drivers = [
 	brand: "Polonez",
 	bid: "5",
 	isActive: "true",
-	isFree: "false",
-	position: ""
+	isFree: "true",
+	coords : {
+		latitude: "54.389079",
+		longitude: "18.622506"
+	}
 },
 {
 	name: "Zenek",
@@ -119,8 +122,11 @@ var drivers = [
 	brand: "Audi A6",
 	bid: "4",
 	isActive: "true",
-	isFree: "false",
-	position: ""
+	isFree: "true",
+	coords : {
+		latitude: "54.366108",
+		longitude: "18.633914"
+	}
 },
 {
 	name: "Zdzisiek",
@@ -128,8 +134,11 @@ var drivers = [
 	brand: "Volkswagen sharan",
 	bid: "6",
 	isActive: "true",
-	isFree: "false",
-	position: ""
+	isFree: "true",
+	coords : {
+		latitude: "54.352955",
+		longitude: "18.645844"
+	}
 },
 {
 	name: "Zygmunt",
@@ -138,7 +147,10 @@ var drivers = [
 	bid: "6",
 	isActive: "true",
 	isFree: "false",
-	position: ""
+	coords : {
+		latitude: "54.352955",
+		longitude: "18.645844"
+	}
 },
 {
 	name: "Ziemowit",
@@ -147,7 +159,10 @@ var drivers = [
 	bid: "6",
 	isActive: "true",
 	isFree: "false",
-	position: ""
+	coords : {
+		latitude: "54.352955",
+		longitude: "18.645844"
+	}
 }
 ];
  
