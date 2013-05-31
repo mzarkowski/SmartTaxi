@@ -22,6 +22,7 @@ body {
     padding:0px;
 	padding-top: 10px;
     width:100%;
+    padding-bottom: 70px;
 }
 
 header{
@@ -37,7 +38,7 @@ header{
 }
 .photo {
 	position: absolute;
-	padding-top: 17px;
+	padding-top: 15px;
 	left: 0;
 }
 .driversItem{
@@ -75,6 +76,7 @@ header{
 }
 
 .driverCar{
+    position: absolute;
 	font-weight: bold;
 	color: #ffebc6;
 	text-transform:uppercase;
@@ -88,19 +90,101 @@ header{
 .driverTimeEstimate{
 
 }
-
+.hidden {
+    display: none;
+}
 #appBar{
 	background : #c2a275;
 	position: fixed;
 	bottom: 0;
-	height: 3.5em;
 	width: 100%;
+    padding-left: 20px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.appBarHidden {
+    height: 54px;
+}
+.appBarFull {
+    height: 54px;
 }
 
+#appBar div {
+    display: block;
+    margin: 0 auto;
+    width: 330px;
+    margin: 0 auto;
+}
 #appBar .choice {
-
+    float: left;
+    height: 70px;
+    width: 110px;
+}
+#appBar #callTaxi {
+    background:url(../img/driver.png) no-repeat 0 0;
+}
+#appBar #chatTaxi {
+   background:url(../img/chat.png) no-repeat 0 0;
+}
+#appBar #changeLocation {
+   background:url(../img/location.png) no-repeat 0 0;
 }
 
+.page {
+    position: fixed;
+    width: 90%;
+    height: 80%;
+    z-index: 99;
+    top: 20px;
+    margin-left: 5%;
+    margin-top: 5%;
+    background-color: rgba(194,162,117,0.75);
+}
+
+.page .topBar {
+    background-color: rgba(116,105,90,0.8);
+    color: #fff;
+    padding-top: 2px;
+    height: 25px;
+    width: 100%;
+    display: block;
+}
+.page .topBar p{
+    cursor:default;
+    padding: 0 5px;
+    margin: 0;
+    display: block;
+    float: left;
+}
+.page .topBar .close {
+    float: right;
+    position: relative;
+}
+
+.page .content {
+    padding-top: 20px;
+}
+
+#changeAdress {
+    
+}
+#changeAdress input{
+    width: 100%;
+    height: 20px;
+    margin-bottom: 10px;
+}
+#changeAdress .button{
+    cursor:default;
+    width: 150px;
+    height: 20px;
+    margin: 0 auto;
+    padding: 5px;
+    background-color: rgba(116,105,90,0.8);
+    text-align: center;
+}
+.bold {
+    font-weight: bold;
+}
 /* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
     .app {

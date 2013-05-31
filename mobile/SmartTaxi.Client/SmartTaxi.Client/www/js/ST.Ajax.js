@@ -33,7 +33,7 @@ ST.Ajax.getDrivers = function () {
             $('.list' + i + ' .driverName').append('' + data[i].name + '');
             $('.list' + i + ' .driverCar').append('' + data[i].brand + ', ' + data[i].year + '');
             $('.list' + i + ' .driverBid').append(' Stawka: ' + data[i].bid + ' zł');
-            $('.list' + i + ' .driverTimeEstimate').append('Czas oczekiwania : ');
+            $('.list' + i + ' .driverTimeEstimate').append('Czas oczekiwania: ');
             coordsArray.push({ latitude: data[i].coords.latitude, longitude: data[i].coords.longitude });
         });
         chooseDriver('.list0');
@@ -59,7 +59,24 @@ ST.Ajax.calculateTime = function (coordsArray) {
 };
 
 function chooseDriver(elem) {
+    $('#appBar').addClass('appBarHidden');
     $(elem).siblings().removeClass('driversItembackgroundSelected').addClass('driversItembackground');
     $(elem).removeClass('driversItembackground');
     $(elem).addClass('driversItembackgroundSelected');
 }
+
+var appBarSelected = false;
+var appBar = function (elem) {
+    if (appBarSelected) {
+
+
+    } else {
+        $('#appBar').removeClass('appBarHidden');
+       
+        //$('#appBar').addClass('appBarFull');
+    }
+
+};
+$('#appBar').on('mouseover', function () { $('#appBar').removeClass('appBarHidden'); })
+$('#appBar').on('mouseout', function () { $('#appBar').addClass('appBarHidden');
+    appBarSelected = false;})

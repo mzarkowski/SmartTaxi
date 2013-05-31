@@ -12,14 +12,49 @@
     <body>
 	<header id="header">Wybierz taksówkarza</header>
     <div id="availableDrivers"></div>
-        <div id="appBar">aaas</div>
+        <div id="appBar" class="appBarHidden">
+            <div>
+            <div id="callTaxi" class="choice" onclick="appBar(this)"></div>
+            <div id="chatTaxi" class="choice"></div>
+                <div id="changeLocation" class="choice"></div>
+            </div>
+        </div>
+        
+        
+        <!-- STRONY--> 
+        <div id="changeAdress" class="page">
+            <div class="topBar"><p>Zmień adres</p><p class="close" onclick="ST.Navigation.ClosePage(this)">X</p></div>
+            <div class="content">
+                <p id="gps" class="bold">Trwa pobieranie pozycji z GPS...</p>
+                <p>Możesz wprowadzić adres ręcznie.</p>
+                	<input id="address" type="text" value="Gnilna 2, Gdańsk">
+                    <p class="button" id="ManualPositionBtn">Zatwierdź adres</p>
+            </div>
+        </div>
+        
+<!--        <div id="getTaxi" class="page">
+            <div class="topBar"><p>Zmień adres</p><p class="close">X</p></div>
+            <div class="content">
+                
+            </div>
+        </div>
+        
+        <div id="Div2" class="page">
+            <div class="topBar"><p>Zmień adres</p><p class="close">X</p></div>
+            <div class="content">
+                
+            </div>
+        </div>-->
 
+
+        <!--BIBLIOTEKI-->
         <script type="text/javascript" src="js/lib/cordova-2.6.0.js"></script>
     <script type="text/javascript" src="js/lib/jquery-1.9.1.min.js"></script>
     <!--globalne skrypty-->
         <script type="text/javascript" src="js/ST.Settings.js"></script>
         <script type="text/javascript" src="js/ST.Drivers.js"></script>
         <script type="text/javascript" src="js/ST.Ajax.js"></script>
+        <script type="text/javascript" src="js/ST.Navigation.js"></script>
         <script>
 
             ST.Ajax.getDrivers();
