@@ -101,6 +101,16 @@
     <Content Include="config.xml" />
     <Content Include="CordovaLib\WPCordovaClassLib.dll" />
     <Content Include="CordovaSourceDictionary.xml" />
+    <Resource Include="www\img\ajax-loader.gif" />
+    <Resource Include="www\img\110.gif" />
+    <Content Include="www\img\chat.png" />
+    <Content Include="www\img\driver.png" />
+    <Content Include="www\img\location.png" />
+    <Content Include="www\img\person.png" />
+    <Content Include="www\js\lib\spin.min.js" />
+    <Content Include="www\js\ST.Geolocation.js" />
+    <Content Include="www\js\ST.Map.js" />
+    <Content Include="www\js\ST.Navigation.js" />
     <Content Include="www\js\ST.Ajax.js" />
     <Content Include="www\js\main.js" />
     <Content Include="www\js\router.js" />
@@ -110,6 +120,7 @@
     <Content Include="www\js\lib\jquery-1.9.1.min.js" />
     <Content Include="www\js\index.js" />
     <Content Include="www\js\lib\underscore-min.js" />
+    <Content Include="www\js\ST.Drivers.js" />
     <Content Include="www\js\ST.Settings.js" />
     <None Include="BuildManifestProcessor.js" />
     <Content Include="www\css\index.css" />

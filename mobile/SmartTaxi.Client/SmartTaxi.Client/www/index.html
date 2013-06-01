@@ -11,55 +11,84 @@
     </head>
     <body>
 	<header id="header">Wybierz taksówkarza</header>
-    <div id="availableDrivers"></div>
-        <div id="appBar" class="appBarHidden">
+        <div id="availableDrivers">
+            <div id="positionUnavailable">
+                <p class="bold" id="gettingGps">Trwa pobieranie pozycji GPS... <br />Może to chwilę potrwać...</p>
+                <p class="bold hidden" id="gettingDrivers">Wygląda na to, że żaden taksówkarz nie jest wolny... <br /> Może to chwilę potrwać.</p>
+                <div style="padding: 30px; "id="LoadingSpinner"></div>
+                <p id="gettingAddress" style="font-size: large; cursor: default;" onclick="ST.Navigation.showPage('changeAdress')">Tapnij tutaj, aby podać adres ręcznie</p>
+            </div>
+        </div>
+
+        <div id="appBar" class="appBarHidden hidden">
             <div>
-            <div id="callTaxi" class="choice" onclick="appBar(this)"></div>
-            <div id="chatTaxi" class="choice"></div>
-                <div id="changeLocation" class="choice"></div>
+            <div id="callTaxi" class="choice" onclick="ST.Navigation.showPage('getTaxi')"></div>
+            <div id="chatTaxi" class="choice" onclick="ST.Navigation.showPage('chat')"></div>
+            <div id="changeLocation" class="choice" onclick="ST.Navigation.showPage('changeAdress')"></div>
             </div>
         </div>
         
         
         <!-- STRONY--> 
-        <div id="changeAdress" class="page">
-            <div class="topBar"><p>Zmień adres</p><p class="close" onclick="ST.Navigation.ClosePage(this)">X</p></div>
+        <div id="changeAdress" class="page hidden">
+                        <div>
+                            <div class="topBar"><p>Zmień adres</p><p class="close" onclick="ST.Navigation.ClosePage(this)">X</p></div>
+                            </div>
             <div class="content">
-                <p id="gps" class="bold">Trwa pobieranie pozycji z GPS...</p>
+                <p id="gps" class="bold" onclick="ST.Navigation.useGPS();">Trwa pobieranie pozycji z GPS...</p>
                 <p>Możesz wprowadzić adres ręcznie.</p>
-                	<input id="address" type="text" value="Gnilna 2, Gdańsk">
-                    <p class="button" id="ManualPositionBtn">Zatwierdź adres</p>
+                <input id="address" type="text" value="Bażyńskiego 1A, Gdańsk">
+                <p class="button" id="ManualPositionBtn" onclick="ST.Navigation.getMap()">Zatwierdź adres</p>
+                <div id="map-canvas"></div> 
             </div>
         </div>
         
-<!--        <div id="getTaxi" class="page">
-            <div class="topBar"><p>Zmień adres</p><p class="close">X</p></div>
+        <div id="getTaxi" class="page hidden">
+            <div id="invisible">
+                <div class="topBar"><p>Zamów taxi</p><p class="close" onclick="ST.Navigation.ClosePage(this)">X</p></div>
+             </div>
+            <div class="content">
+                <div id="order">
+                    <p id="details" class="bold" style="font-size: larger">Zenek - 5zł/km</p>
+                    <p class="bold">Gdzie chcesz jechać?</p>
+                    <input id="destination" type="text" value="Galeria Bałtycka, Gdańsk" />
+                    <p class="bold">Numer kontaktowy?</p>
+                    <input id="phone" type="text" value="885446141" />
+                    <p class="button" onclick="ST.Navigation.confirmAdress()">Zatwierdź adres</p>
+                </div>
+                <div id="step2">
+                    <p>Trwa oczekiwanie na taksówkarza...</p>
+                    <div style="padding: 30px; "id="LoadingTaxi"></div>
+                    <p></p>
+                </div>
+
+            </div>
+        </div>
+        
+        <div id="chat" class="page hidden">
+             <div>
+                 <div class="topBar"><p>Czatuj z kierowcą</p><p class="close" onclick="ST.Navigation.ClosePage(this)">X</p></div>
+              </div>
             <div class="content">
                 
             </div>
         </div>
-        
-        <div id="Div2" class="page">
-            <div class="topBar"><p>Zmień adres</p><p class="close">X</p></div>
-            <div class="content">
-                
-            </div>
-        </div>-->
 
 
         <!--BIBLIOTEKI-->
         <script type="text/javascript" src="js/lib/cordova-2.6.0.js"></script>
-    <script type="text/javascript" src="js/lib/jquery-1.9.1.min.js"></script>
-    <!--globalne skrypty-->
+        <script type="text/javascript" src="js/lib/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="js/lib/spin.min.js"></script>
+        <!--globalne skrypty-->
         <script type="text/javascript" src="js/ST.Settings.js"></script>
         <script type="text/javascript" src="js/ST.Drivers.js"></script>
         <script type="text/javascript" src="js/ST.Ajax.js"></script>
+        <script type="text/javascript" src="js/ST.Map.js"></script>
         <script type="text/javascript" src="js/ST.Navigation.js"></script>
-        <script>
-
-            ST.Ajax.getDrivers();
-
-        </script>
+        <script type="text/javascript" src="js/ST.Geolocation.js"></script>
+        
+        <!--start aplikacji-->
+        <script type="text/javascript" src="js/index.js"></script>
 		<script>
 
 		</script>

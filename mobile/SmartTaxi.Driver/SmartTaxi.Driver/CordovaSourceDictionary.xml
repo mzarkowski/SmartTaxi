@@ -2,10 +2,15 @@
 <!-- This file is auto-generated, do not edit! -jm -->
 <CordovaSourceDictionary>
     <FilePath Value="www\cordova-2.6.0.js"/>
+    <FilePath Value="www\img\chat.png"/>
+    <FilePath Value="www\img\driver.png"/>
+    <FilePath Value="www\img\location.png"/>
     <FilePath Value="www\img\logo.png"/>
+    <FilePath Value="www\img\person.png"/>
     <FilePath Value="www\js\index.js"/>
     <FilePath Value="www\js\jquery-1.9.1.min.js"/>
     <FilePath Value="www\js\lib\backbone-min.js"/>
+    <FilePath Value="www\js\lib\cordova-2.3.0.js"/>
     <FilePath Value="www\js\lib\cordova-2.6.0.js"/>
     <FilePath Value="www\js\lib\jquery-1.9.1.min.js"/>
     <FilePath Value="www\js\lib\underscore-min.js"/>
@@ -13,6 +18,7 @@
     <FilePath Value="www\js\router.js"/>
     <FilePath Value="www\js\ST.Ajax.js"/>
     <FilePath Value="www\js\ST.Connector.js"/>
+    <FilePath Value="www\js\ST.Drivers.js"/>
     <FilePath Value="www\js\ST.Events.js"/>
     <FilePath Value="www\js\ST.Settings.js"/>
     <FilePath Value="www\js\ST.Geolocation.js"/>

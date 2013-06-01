@@ -28,16 +28,19 @@ ST.Ajax.send = function (url, method, parm, callBack) {
 ST.Ajax.getDrivers = function () {
     return ST.Ajax.send("http://localhost:3000/api/drivers/available", "GET", '', function (data) {
         var coordsArray = [];
+        $('.driversItem').remove();
         $.each(data, function (i, value) {
-            $('#availableDrivers').append('<div class="driversItem list' + i + ' driversItembackground" onclick="chooseDriver(this)"><div class="photo"><img src="img/person.png" alt="Taxi" /></div><div class="driverName"></div><div class="driverCar"></div><div class="driverBid"></div><div class="driverTimeEstimate"></div><div class="historyUrl"></div></div>');
+            $('#availableDrivers').append('<div class="driversItem list' + i + ' driversItembackground" onclick="ST.Navigation.chooseDriver(this)"><div class="photo"><img src="img/person.png" alt="Taxi" /></div><div class="driverName"></div><div class="driverCar"></div><div class="driverBid"></div><div class="driverTimeEstimate"></div><div class="historyUrl"></div></div>');
             $('.list' + i + ' .driverName').append('' + data[i].name + '');
             $('.list' + i + ' .driverCar').append('' + data[i].brand + ', ' + data[i].year + '');
             $('.list' + i + ' .driverBid').append(' Stawka: ' + data[i].bid + ' zł');
             $('.list' + i + ' .driverTimeEstimate').append('Czas oczekiwania: ');
             coordsArray.push({ latitude: data[i].coords.latitude, longitude: data[i].coords.longitude });
         });
-        chooseDriver('.list0');
+        $('#positionUnavailable').addClass('hidden');
+        ST.Navigation.chooseDriver('.list0');
         //ST.Ajax.calculateTime(coordsArray);
+        $('#appBar').removeClass('hidden');
     });
 };
 
@@ -48,35 +51,11 @@ ST.Ajax.calculateTime = function (coordsArray) {
         stringus = stringus + seperator + coordsArray[i].latitude + ',' + coordsArray[i].longitude;
         seperator = "|";
     });
-    var latitude = '54.395901';
-    var longitude = '18.578725';
+    var latitude = ST.Geolocation.latitude;
+    var longitude = ST.Geolocation.longitude;
     $.getJSON("http://maps.googleapis.com/maps/api/distancematrix/json?origins=" + stringus + "&destinations=" + latitude + "," + longitude + "&language=pl-PL&sensor=false", function (json) {
-        //console.log("JSON Data: " + json.users[3].name);
         $.each(coordsArray, function (i, value) {
             $('.list' + i + ' .driverTimeEstimate').append(json.rows[i].elements[0].duration.text);
         });
     });
 };
-
-function chooseDriver(elem) {
-    $('#appBar').addClass('appBarHidden');
-    $(elem).siblings().removeClass('driversItembackgroundSelected').addClass('driversItembackground');
-    $(elem).removeClass('driversItembackground');
-    $(elem).addClass('driversItembackgroundSelected');
-}
-
-var appBarSelected = false;
-var appBar = function (elem) {
-    if (appBarSelected) {
-
-
-    } else {
-        $('#appBar').removeClass('appBarHidden');
-       
-        //$('#appBar').addClass('appBarFull');
-    }
-
-};
-$('#appBar').on('mouseover', function () { $('#appBar').removeClass('appBarHidden'); })
-$('#appBar').on('mouseout', function () { $('#appBar').addClass('appBarHidden');
-    appBarSelected = false;})

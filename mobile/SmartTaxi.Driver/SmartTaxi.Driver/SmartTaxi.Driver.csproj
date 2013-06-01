@@ -23,7 +23,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{3677C1B7-D68B-4CF9-BF8A-E869D437A6DF}</ProjectGuid>
+    <ProjectGuid>{1DC1AF8C-F29D-4D6E-B405-2F48E44C13F2}</ProjectGuid>
     <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -102,7 +102,11 @@
     <Content Include="CordovaLib\WPCordovaClassLib.dll" />
     <Content Include="CordovaSourceDictionary.xml" />
     <Content Include="www\cordova-2.6.0.js" />
+    <Content Include="www\img\chat.png" />
+    <Content Include="www\img\driver.png" />
+    <Content Include="www\img\location.png" />
     <Content Include="www\img\logo.png" />
+    <Content Include="www\img\person.png" />
     <Content Include="www\js\index.js" />
     <Content Include="www\js\jquery-1.9.1.min.js" />
     <Content Include="www\js\lib\backbone-min.js" />
@@ -114,6 +118,7 @@
     <Content Include="www\js\router.js" />
     <Content Include="www\js\ST.Ajax.js" />
     <Content Include="www\js\ST.Connector.js" />
+    <Content Include="www\js\ST.Drivers.js" />
     <Content Include="www\js\ST.Events.js" />
     <Content Include="www\js\ST.Settings.js" />
     <Content Include="www\js\ST.Geolocation.js" />
@@ -130,7 +135,6 @@
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
     </None>
-    <None Include="www\img\Thumbs.db" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ApplicationIcon.png">
