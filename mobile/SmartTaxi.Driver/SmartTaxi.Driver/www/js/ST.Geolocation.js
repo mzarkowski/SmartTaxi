@@ -6,7 +6,7 @@ ST.Geolocation.accuracy = ST.Geolocation.minNetworkAccuracy + 1;
 ST.Geolocation.getPosition = function () {
     var options = {};
     options.enableHighAccuracy = true;
-    options.frequency = ST.Geolocation.getPositionFrequency;
+    options.frequency = 20000;
     options.timeout = 10000;
     ST.Geolocation.watchID = navigator.geolocation.watchPosition(ST.Geolocation.onSuccess, ST.Geolocation.onError, options);
 };
@@ -20,12 +20,12 @@ ST.Geolocation.onSuccess = function (position) {
         ST.Geolocation.latitude = position.coords.latitude;
         ST.Geolocation.minAccuracy = ST.Geolocation.accuracy;
         $('#coords').text(ST.Geolocation.latitude);
-		ST.Socket.socket.emit('updateDriverCoords', { driverId: '1234', longitude: position.coords.longitude, latitude: position.coords.latitude});
-		/*
-        ST.Socket.socket.on('date', function (data) {
-                $('#message').text(data.date);
-        });
-		*/
+        ST.Socket.socket.emit('updateDriverCoords', { driverId: '51ab6cc4802dcd306c000001', longitude: position.coords.longitude, latitude: position.coords.latitude });
+
+        //ST.Socket.socket.on('date', function (data) {
+        //        $('#message').text(data.date);
+        //});
+
     }
 };
 

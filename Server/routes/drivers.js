@@ -97,6 +97,33 @@ exports.deleteDriver = function(req, res) {
 		});
 	});
 };
+
+exports.updateDriverCoords = function(driver) {
+	var id = driver.driverId;
+	db.collection('drivers', function(err, collection) {
+		collection.update({'_id':new BSON.ObjectID(id)}, { $set: {coords : {latitude : driver.latitude, longitude : driver.longitude}}}, {safe:true}, function(err, result) {
+			if (err) {
+				console.log('Error updating: ' + err);
+			} else {
+				console.log('Zaktualizowano pozycję dla kierowcy: ' + id);
+			}
+		});
+	});
+};
+
+exports.updateDriverStatus = function(driver) {
+	var id = driver.driverId;
+	db.collection('drivers', function(err, collection) {
+		//ZMIENIć na FALSE!
+		collection.update({'_id':new BSON.ObjectID(id)}, { $set: {"isFree" : "true"}}, {safe:true}, function(err, result) {
+			if (err) {
+				console.log('Error updating: ' + err);
+			} else {
+				console.log('Kierowca ma kurs: ' + id);
+			}
+		});
+	});
+};
  
 /* 
  * Przykładowe dane w razie czystki w bazie.
@@ -131,7 +158,7 @@ var drivers = [
 {
 	name: "Zdzisiek",
 	year: "2000",
-	brand: "Volkswagen sharan",
+	brand: "Toyota Avensis",
 	bid: "6",
 	isActive: "true",
 	isFree: "true",
@@ -155,7 +182,7 @@ var drivers = [
 {
 	name: "Ziemowit",
 	year: "2000",
-	brand: "Volkswagen sharan",
+	brand: "Toyota Avensis",
 	bid: "6",
 	isActive: "true",
 	isFree: "false",

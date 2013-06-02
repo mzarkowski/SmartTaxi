@@ -1,6 +1,13 @@
 $(function () {
     document.addEventListener("deviceready", function () {
         ST.Geolocation.getPosition();
+        ST.Socket.socket = io.connect("http://localhost:3000");
+        // W aplikacji docelowej nale¿a³oby u¿yæ Phonegapowego device.uuid jako identyfikatora
+        ST.Socket.userID = (new Date().getTime()).toString();
+        
+        ST.Socket.socket.on('connect', function (data) {
+            ST.Socket.socket.emit('storeClientInfo', { customId: ST.Socket.userID, type: "client" });
+        });
     }, false);
  
 

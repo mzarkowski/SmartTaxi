@@ -15,7 +15,7 @@
             <div id="positionUnavailable">
                 <p class="bold" id="gettingGps">Trwa pobieranie pozycji GPS... <br />Może to chwilę potrwać...</p>
                 <p class="bold hidden" id="gettingDrivers">Wygląda na to, że żaden taksówkarz nie jest wolny... <br /> Może to chwilę potrwać.</p>
-                <div style="padding: 30px; "id="LoadingSpinner"></div>
+                <div style="padding: 30px; " id="LoadingSpinner"></div>
                 <p id="gettingAddress" style="font-size: large; cursor: default;" onclick="ST.Navigation.showPage('changeAdress')">Tapnij tutaj, aby podać adres ręcznie</p>
             </div>
         </div>
@@ -56,10 +56,14 @@
                     <input id="phone" type="text" value="885446141" />
                     <p class="button" onclick="ST.Navigation.confirmAdress()">Zatwierdź adres</p>
                 </div>
-                <div id="step2">
+                <div id="step2" class="hidden">
                     <p>Trwa oczekiwanie na taksówkarza...</p>
-                    <div style="padding: 30px; "id="LoadingTaxi"></div>
-                    <p></p>
+                    <div style="padding: 30px; width: 1px; margin: 0 auto; "id="LoadingTaxi"></div>
+                    <p id="timer"></p>
+                </div>
+                <div id="step3" class="hidden">
+                    <p>Czekaj na taksówkarza</p>
+                    <p>Taksówkarz przyjedzie za 11 min.</p>
                 </div>
 
             </div>
@@ -76,7 +80,8 @@
 
 
         <!--BIBLIOTEKI-->
-        <script type="text/javascript" src="js/lib/cordova-2.6.0.js"></script>
+        <!--<script type="text/javascript" src="js/lib/cordova-2.6.0.js"></script>-->
+        <script type="text/javascript" src="js/lib/cordova-2.3.0.js"></script>
         <script type="text/javascript" src="js/lib/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="js/lib/spin.min.js"></script>
         <!--globalne skrypty-->
@@ -86,6 +91,7 @@
         <script type="text/javascript" src="js/ST.Map.js"></script>
         <script type="text/javascript" src="js/ST.Navigation.js"></script>
         <script type="text/javascript" src="js/ST.Geolocation.js"></script>
+        <script type="text/javascript" src="js/ST.Socket.js"></script>
         
         <!--start aplikacji-->
         <script type="text/javascript" src="js/index.js"></script>

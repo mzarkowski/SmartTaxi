@@ -11,10 +11,18 @@
         
         <p id="coords">Tu będą coordsy</p>
         <p id="message">Message</p>
-    <div id="availableDrivers"></div>
+        <div id="availableDrivers">
+            
+            <div id="positionUnavailable">
+                <p class="bold" id="gettingGps">Łączenie z GPS... <br />...</p>
+                <div style="padding: 30px; " id="LoadingSpinner"></div>
+            </div>
+
+        </div>
 
         <script type="text/javascript" src="js/lib/cordova-2.3.0.js"></script>
-    <script type="text/javascript" src="js/lib/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="js/lib/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="js/lib/spin.min.js"></script>
     
     <!--globalne skrypty-->
         <script type="text/javascript" src="js/ST.Settings.js"></script>
@@ -24,10 +32,8 @@
 		<script type="text/javascript" src="js/ST.Socket.js"></script>
         <!--Start aplikacji-->
         <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-		$(function () {
+        <script>
 
-		});
         </script>
     </body>
 </html>
