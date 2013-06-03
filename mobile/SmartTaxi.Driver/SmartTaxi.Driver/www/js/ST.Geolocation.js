@@ -19,13 +19,9 @@ ST.Geolocation.onSuccess = function (position) {
         //aktualizacja pozycji
         ST.Geolocation.latitude = position.coords.latitude;
         ST.Geolocation.minAccuracy = ST.Geolocation.accuracy;
-        $('#coords').text(ST.Geolocation.latitude);
+        $('#positionUnavailable').addClass('hidden');
+        $('#message').text("Twoja pozycja jest przekazywana. Czekaj na klientów.");
         ST.Socket.socket.emit('updateDriverCoords', { driverId: '51ab6cc4802dcd306c000001', longitude: position.coords.longitude, latitude: position.coords.latitude });
-
-        //ST.Socket.socket.on('date', function (data) {
-        //        $('#message').text(data.date);
-        //});
-
     }
 };
 

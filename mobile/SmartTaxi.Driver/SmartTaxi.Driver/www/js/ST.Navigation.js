@@ -1,6 +1,32 @@
 ﻿var ST = ST || {};
 
 ST.Navigation = ST.Navigation || {};
+ST.Navigation.from = "";
+ST.Navigation.driverId = "";
+ST.Navigation.newCourse = function(data) {
+    $('.page').removeClass('hidden');
+    $('#time').text('Szac. czas dojazdu: ' + data.time);
+    $('#tel').text('Numer telefonu: ' + data.tel);
+    $('#time1').text($('#time').text());
+    $('#tel1').text($('#tel').text());
+    ST.Navigation.from = data.client;
+    ST.Navigation.driverId = data.driver;
+    ST.Navigation.destination = data.destination;
+};
+ST.Navigation.step2 = function (response) {
+    
+    if (response === 1) {
+        ST.Socket.socket.emit('courseResponse', { response: 1, to: ST.Navigation.from, driverId: ST.Navigation.driverId });
+        $('#step1').addClass("hidden");
+        $('#step2').removeClass("hidden");
+    }
+    else {
+        //Kierowca się nie zgadza
+        ST.Socket.socket.emit('courseResponse', { response: 0, to: ST.Navigation.from, driverId: ST.Navigation.driverId });
+        $('.page').addClass('hidden');
+    }
+    
+};
 
 ST.Navigation.ClosePage = function (elem) {
     $(elem).parent().parent().parent().addClass('hidden');

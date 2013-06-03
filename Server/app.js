@@ -77,7 +77,23 @@ io.sockets.on('connection', function(socket){
 				break;
 			}
 		}
-		io.sockets.socket(driver).emit('newCourse', {'from' : data.client, 'where' : data.coords});
+		io.sockets.socket(driver).emit('newCourse', data);
+		//io.sockets.emit('course', {'client': data.});
+	});
+	
+	socket.on('courseCanceled', function(data){
+		var driver = null;
+		//uzyskanie socketa kierowcy
+		var len=clients.length;
+		for( var i=0; i<len; ++i ){
+			var c = clients[i];
+			if(c.customId == data.driverId){
+				driver = c.clientId;
+				break;
+			}
+		}
+		console.log("Kurs anulowany");
+		io.sockets.socket(driver).emit('courseCanceledDriver', data);
 		//io.sockets.emit('course', {'client': data.});
 	});
 	
@@ -101,11 +117,12 @@ io.sockets.on('connection', function(socket){
 	
 	socket.on('updateDriverCoords', function(data){
 		driver.updateDriverCoords(data);
+		io.sockets.emit('updateCoords', {id: data.driverId, latitude: data.latitude, longitude: data.longitude});
 	});
 	
-  setInterval(function(){
-    io.sockets.emit('date', {'date': new Date()});
-  }, 10000);
+  //setInterval(function(){
+    //io.sockets.emit('updateCoords', {'id': '123', latitude: '55'});
+  //}, 10000);
 
 
   socket.on('disconnect', function (data) {

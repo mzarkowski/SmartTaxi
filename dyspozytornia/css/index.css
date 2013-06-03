@@ -131,7 +131,6 @@ header{
 
 .page {
     position: fixed;
-    text-align: center;
     width: 90%;
     height: 80%;
     z-index: 50;
@@ -165,7 +164,6 @@ header{
     padding-top: 20px;
 }
 
-
 #changeAdress {
     
 }
@@ -189,15 +187,13 @@ header{
 }
 
 #map-canvas {
-   width: 100%; 
-   height: 250px;
+   width: 70%; 
+   height: 600px;
 }
 
 #positionUnavailable {
     text-align: center;
-    margin-top: 65%;
 }
-
 #getTaxi{
     text-align: center;
 }
@@ -207,11 +203,6 @@ header{
     margin-bottom: 5px;
 }
 #step2 {
-    text-align: center;
-}
-#content {
-    position: absolute;
-    top: 45%;
     text-align: center;
 }
 /* Landscape layout (with min-width) */

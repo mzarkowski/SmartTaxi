@@ -7,9 +7,10 @@ $(function () {
             ST.Socket.socket.emit('storeClientInfo', { customId: driverId, type: "driver" });
         });
         ST.Socket.socket.on('newCourse', function (data) {
-            $('#message').text("Nowy kurs!");
-            //1 tak, 0 nie
-            ST.Socket.socket.emit('courseResponse', { response: 1, to: data.from, driverId: driverId });
+            ST.Navigation.newCourse(data);
+        });
+        ST.Socket.socket.on('courseCanceledDriver', function (data) {
+            $('.page').addClass('hidden');
         });
     }, false);
 
