@@ -1,12 +1,12 @@
 ﻿var ST = ST || {};
 ST.Geolocation = ST.Geolocation || {};
-ST.Geolocation.minAccuracy = 50.0;
+ST.Geolocation.minAccuracy = 160.0;
 ST.Geolocation.accuracy = ST.Geolocation.minNetworkAccuracy + 1;
 
 ST.Geolocation.getPosition = function () {
     var options = {};
     options.enableHighAccuracy = true;
-    options.frequency = 20000;
+    options.frequency = 1000;
     options.timeout = 10000;
     ST.Geolocation.watchID = navigator.geolocation.watchPosition(ST.Geolocation.onSuccess, ST.Geolocation.onError, options);
 };
