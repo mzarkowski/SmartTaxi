@@ -41,6 +41,7 @@ app.get('/api/drivers', driver.findAll);
 app.get('/api/drivers/available', driver.findAvailableAndFree);
 app.get('/api/drivers/:id', driver.findById);
 app.post('/api/drivers', driver.addDriver);
+app.post('/api/drivers/login', driver.matchLoginAndPassword);
 app.put('/api/drivers/:id', driver.updateDriver);
 //JShint nie chce wspópracować z DELETE (reserved world)
 app.del('/api/drivers/:id', driver.deleteDriver);

@@ -111,3 +111,11 @@ ST.Navigation.confirmAdress = function () {
     ;
 };
 
+
+ST.Navigation.login = function() {
+    var parm = {
+        "name": $('#loginInput').val(),
+        "password": md5($('#passwordInput').val())
+    };
+    ST.Ajax.getDrivers(parm);
+};

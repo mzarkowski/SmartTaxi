@@ -1,17 +1,8 @@
 $(function () {
     document.addEventListener("deviceready", function () {
-        var driverId = '51ab6cc4802dcd306c000001';
+        ST.Drivers.driverId = '51ab6cc4802dcd306c000001';
         ST.Geolocation.getPosition();
         ST.Socket.socket = io.connect("http://localhost:3000");
-        ST.Socket.socket.on('connect', function (data) {
-            ST.Socket.socket.emit('storeClientInfo', { customId: driverId, type: "driver" });
-        });
-        ST.Socket.socket.on('newCourse', function (data) {
-            ST.Navigation.newCourse(data);
-        });
-        ST.Socket.socket.on('courseCanceledDriver', function (data) {
-            $('.page').addClass('hidden');
-        });
     }, false);
 
 

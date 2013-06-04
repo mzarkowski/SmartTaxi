@@ -8,49 +8,65 @@
         <title>SmartTaxi</title>
     </head>
     <body>
-        <div id="content">
-            <p id="message"></p>
-        </div>
-        <div id="availableDrivers">
-            
-            <div id="positionUnavailable">
-                <p class="bold" id="gettingGps">Łączenie z GPS... <br /></p>
-                <div style="padding: 30px; " id="LoadingSpinner"></div>
-            </div>
-
-        </div>
-        <div class="page hidden">
-            <div id="step1" style="margin-top: 25%; ">
-                <p class="bold" style="font-size: larger">Klient!</p>
-                <p id="time">Szac. czas dojazdu: 5 min</p>
-                <p id="tel">Numer telefonu: 885 446 104</p>
-                <div id="response">
-                    <p class="button" onclick="ST.Navigation.step2(1)">Przyjmij</p><p class="button" onclick="ST.Navigation.step2(0)">Odrzuć</p>
+        <div id="login">
+            <div class="page">
+                <div class="topBar"><p>Zaloguj się</p></div>
+                <div id="contentLogin">
+                    <p class="bold">Login</p>
+                    <input id="loginInput" type="text" value="Zbyszek" />
+                    <p class="bold">Hasło</p>
+                    <input id="passwordInput" type="password" value="a" />
+                    <p id="submitLogin" class="button" onclick="ST.Navigation.login()">Zatwierdź adres</p>
                 </div>
             </div>
+        </div>
+
+        <div id="afterLogin" class="hidden">
+            <div id="content">
+                <p id="message"></p>
+            </div>
+            <div id="availableDrivers">
+            
+                <div id="positionUnavailable">
+                    <p class="bold" id="gettingGps">Łączenie z GPS... <br /></p>
+                    <div style="padding: 70px; padding-left: 100px; width: 50px; margin: 0 auto; " id="LoadingSpinner"></div>
+                </div>
+
+            </div>
+            <div class="page hidden">
+                <div id="step1" style="margin-top: 25%; ">
+                    <p class="bold" style="font-size: larger">Klient!</p>
+                    <p id="time">Szac. czas dojazdu: 5 min</p>
+                    <p id="tel">Numer telefonu: 885 446 104</p>
+                    <div id="response">
+                        <p class="button" onclick="ST.Navigation.step2(1)">Przyjmij</p><p class="button" onclick="ST.Navigation.step2(0)">Odrzuć</p>
+                    </div>
+                </div>
             
                 <div id="step2" class="hidden">
-                <p class="bold" style="font-size: large">Masz kurs</p>
-                <p id="time1">Szac. czas dojazdu: 5 min</p>
+                    <p class="bold" style="font-size: large">Masz kurs</p>
+                    <p id="time1">Szac. czas dojazdu: 5 min</p>
                     <p id="tel1">Numer telefonu: 885 446 104</p>
                     <p>Jedź tutaj: </p>
                     <div id="map-canvas">
                     </div>
                     <p class="button">Kurs skończony</p>
+                </div>
             </div>
         </div>
-
         <script type="text/javascript" src="js/lib/cordova-2.3.0.js"></script>
         <script type="text/javascript" src="js/lib/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="js/lib/spin.min.js"></script>
+        <script type="text/javascript" src="js/lib/md5.js"></script>
     
-    <!--globalne skrypty-->
+        <!--globalne skrypty-->
         <script type="text/javascript" src="js/ST.Settings.js"></script>
+        <script type="text/javascript" src="js/ST.Drivers.js"></script>
         <script type="text/javascript" src="js/ST.Ajax.js"></script>
         <script type="text/javascript" src="js/ST.Navigation.js"></script>
         <script type="text/javascript" src="js/ST.Geolocation.js"></script>
         <script type="text/javascript" src="http://localhost:3000/socket.io/socket.io.js"></script>
-		<script type="text/javascript" src="js/ST.Socket.js"></script>
+        <script type="text/javascript" src="js/ST.Socket.js"></script>
         <!--Start aplikacji-->
         <script type="text/javascript" src="js/index.js"></script>
         <script>

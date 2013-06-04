@@ -223,3 +223,13 @@ header{
                                       /* offset horizontal: half of image width and text area width */
     }
 }
+#contentLogin {
+    padding-top: 50px;
+}
+
+#login input {
+    height: 30px;
+}
+#submitLogin {
+    margin-top: 20px;
+}

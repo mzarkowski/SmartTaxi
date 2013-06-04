@@ -25,16 +25,28 @@ ST.Ajax.send = function (url, method, parm, callBack) {
     return;
 };
 
-ST.Ajax.getDrivers = function () {
-    return ST.Ajax.send("http://localhost:3000/api/drivers/available", "GET", '', function (data) {
-        $.each(data, function (i, value) {
-            $('#availableDrivers').append('<div class="driversItem list' + i + ' driversItembackground" onclick="chooseDriver(this)"><div class="photo"><img src="img/person.png" alt="Taxi" /></div><div class="driverName"></div><div class="driverCar"></div><div class="driverBid"></div><div class="driverTimeEstimate"></div><div class="historyUrl"></div></div>');
-            $('.list' + i + ' .driverName').append('' + data[i].name + '');
-            $('.list' + i + ' .driverCar').append('' + data[i].brand + ', ' + data[i].year + '');
-            $('.list' + i + ' .driverBid').append(' Stawka: ' + data[i].bid + ' zł');
-            $('.list' + i + ' .driverTimeEstimate').append('Obliczam czas...');
-            
-        });
+ST.Ajax.getDrivers = function (parm) {
+    return ST.Ajax.send("http://localhost:3000/api/drivers/login", "POST", parm, function (data) {
+        
+        if (!(typeof !data[0] == "undefined")) {
+            ST.Drivers.driverId = data[0]._id;
+
+            ST.Socket.socket.on('connect', function(dat) {
+                ST.Socket.socket.emit('storeClientInfo', { customId: ST.Drivers.driverId, type: "driver" });
+            });
+            ST.Socket.socket.on('newCourse', function(dat) {
+                ST.Navigation.newCourse(data);
+            });
+            ST.Socket.socket.on('courseCanceledDriver', function(dat) {
+                $('.page').addClass('hidden');
+            });
+            $('#login').addClass('hidden');
+            $('#afterLogin').removeClass('hidden');
+        }
+        else {
+            alert('dupa');
+        }
+
     });
 };
 
