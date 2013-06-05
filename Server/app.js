@@ -118,6 +118,7 @@ io.sockets.on('connection', function(socket){
 	
 	socket.on('updateDriverCoords', function(data){
 		driver.updateDriverCoords(data);
+		console.log("ID : " + data.driverId );
 		io.sockets.emit('updateCoords', {id: data.driverId, latitude: data.latitude, longitude: data.longitude});
 	});
 	

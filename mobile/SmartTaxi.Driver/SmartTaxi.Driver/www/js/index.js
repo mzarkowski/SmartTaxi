@@ -1,7 +1,6 @@
 $(function () {
     document.addEventListener("deviceready", function () {
         ST.Drivers.driverId = '51ab6cc4802dcd306c000001';
-        ST.Geolocation.getPosition();
         ST.Socket.socket = io.connect("http://localhost:3000");
     }, false);
 

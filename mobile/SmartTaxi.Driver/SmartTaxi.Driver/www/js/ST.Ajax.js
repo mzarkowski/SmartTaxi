@@ -30,7 +30,7 @@ ST.Ajax.getDrivers = function (parm) {
         
         if (!(typeof !data[0] == "undefined")) {
             ST.Drivers.driverId = data[0]._id;
-
+            ST.Geolocation.getPosition();
             ST.Socket.socket.on('connect', function(dat) {
                 ST.Socket.socket.emit('storeClientInfo', { customId: ST.Drivers.driverId, type: "driver" });
             });
