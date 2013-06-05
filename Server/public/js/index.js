@@ -46,7 +46,7 @@ $(function() {
     markers.push(taxi);
     google.maps.event.addListener(taxi.marker, "click", function(event) {
       $('#getTaxi').toggle();
-      ST.Ajax.getDriverInfo(data.id);
+      ST.Ajax.getDriverInfo(data.id, data.isFree);
     });
   });
 });

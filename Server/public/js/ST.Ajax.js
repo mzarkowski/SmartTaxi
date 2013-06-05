@@ -21,9 +21,18 @@ ST.Ajax.send = function (url, method, parm, callBack) {
     });
     return;
 };
-ST.Ajax.getDriverInfo = function (id) {
+ST.Ajax.getDriverInfo = function (id, busy) {
     $.getJSON("http://" + window.location.hostname + ":3000/api/drivers/" + id, function (json) {
+        if(busy=="true"){
+        $('#details2').text(json.name + " - " + json.bid + "zl/km (taksiarz zajety)");
+        $('#taxBusy').removeClass('hidden');
+        $('#order').addClass('hidden');
+        }
+        else{
+        $('#taxBusy').addClass('hidden');
+        $('#order').removeClass('hidden');
         $('#details').text(json.name + " - " + json.bid + "zl/km");
+        }
         ST.Drivers.driverSelected.id = json._id;
     });    
 };

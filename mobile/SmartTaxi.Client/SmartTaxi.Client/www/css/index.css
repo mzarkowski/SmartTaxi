@@ -108,13 +108,12 @@ header{
     height: 54px;
 }
 
-#appBar div {
-    display: block;
+#appBar > div {
     margin: 0 auto;
-    width: 330px;
-    margin: 0 auto;
+    width: 220px;
 }
 #appBar .choice {
+    margin: 0 auto;
     float: left;
     height: 70px;
     width: 110px;

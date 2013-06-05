@@ -21,13 +21,16 @@
                 <div class="topBar"><p>Informacje</p><p class="close" onclick="ST.Navigation.ClosePage(this)">X</p></div>
              </div>
             <div class="content">
-                <div id="order">
+                <div id="order" class="hidden">
                     <p id="details" class="bold" style="font-size: larger">Zenek - 5zł/km</p>
                     <p class="bold">Adres klienta</p>
                     <input id="destination" type="text" value="Polanki 64, Gdańsk" />
                     <p class="bold">Numer kontaktowy</p>
                     <input id="phone" type="text" value="885446141" />
                     <p class="button" onclick="ST.Navigation.confirmAdress()">Zatwierdź adres</p>
+                </div>
+                <div id="taxBusy" class="hidden">
+                    <p id="details2" class="bold" style="font-size: larger">Zenek - 5zł/km</p>
                 </div>
                 <div id="step2" class="hidden">
                     <p>Trwa oczekiwanie na taksówkarza...</p>

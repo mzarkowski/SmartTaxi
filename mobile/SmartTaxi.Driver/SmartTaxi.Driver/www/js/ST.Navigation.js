@@ -36,7 +36,7 @@ ST.Navigation.step2 = function (response) {
 ST.Navigation.courseEnded = function() {
     $('.page').addClass('hidden');
     ST.Socket.socket.emit('courseEnded', { to: ST.Navigation.from, driverId: ST.Navigation.driverId });
-    ST.Navigation.isBusy = "true";
+    ST.Navigation.isBusy = "false";
 };
 
 ST.Navigation.ClosePage = function (elem) {
