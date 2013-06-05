@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -15,6 +15,31 @@
 	<div id="map-canvas">
 
 	</div>
+	
+    <div id="getTaxi" class="page hidden">
+            <div id="invisible">
+                <div class="topBar"><p>Informacje</p><p class="close" onclick="ST.Navigation.ClosePage(this)">X</p></div>
+             </div>
+            <div class="content">
+                <div id="order">
+                    <p id="details" class="bold" style="font-size: larger">Zenek - 5zł/km</p>
+                    <p class="bold">Adres klienta</p>
+                    <input id="destination" type="text" value="Polanki 64, Gdańsk" />
+                    <p class="bold">Numer kontaktowy</p>
+                    <input id="phone" type="text" value="885446141" />
+                    <p class="button" onclick="ST.Navigation.confirmAdress()">Zatwierdź adres</p>
+                </div>
+                <div id="step2" class="hidden">
+                    <p>Trwa oczekiwanie na taksówkarza...</p>
+                    <div style="padding: 30px; width: 1px; margin: 0 auto; "id="LoadingTaxi"></div>
+                    <p id="timer"></p>
+                </div>
+                <div id="step3" class="hidden">
+                    <p>Taksówka wysłana.</p>
+                </div>
+
+            </div>
+        </div>
      </content>   
 
         <script type="text/javascript" src="js/lib/jquery-1.9.1.min.js"></script>

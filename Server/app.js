@@ -54,9 +54,12 @@ io.sockets.on('connection', function(socket){
     socket.on('storeClientInfo', function (data) {
         var clientInfo = {};
         console.log("Zalogował się użytkownik :" + JSON.stringify(data));
+        if(data.type=="driver"){
+            driver.updateDriverAvailable(data);
+        }
         clientInfo.customId = data.customId;
         clientInfo.clientId = socket.id;
-        clientInfo.type = socket.type;
+        clientInfo.type = data.type;
         clients.push(clientInfo);
     });
     
@@ -129,17 +132,15 @@ io.sockets.on('connection', function(socket){
 			}
 		}
 		console.log("Kurs zakończony");
-		//dopisać zmianę statusu
-		if(data.response === 1){
-			driver.updateDriverStatusFree(data);
-		}
+
+		driver.updateDriverStatusFree(data);
 		io.sockets.socket(client).emit('courseEnded', data);
 	});
 	
 	socket.on('updateDriverCoords', function(data){
 		driver.updateDriverCoords(data);
 		console.log("ID : " + data.driverId );
-		io.sockets.emit('updateCoords', {id: data.driverId, latitude: data.latitude, longitude: data.longitude});
+		io.sockets.emit('updateCoords', {id: data.driverId, latitude: data.latitude, longitude: data.longitude, isFree: data.isFree});
 	});
 	
   //setInterval(function(){
@@ -153,6 +154,9 @@ console.log("Dyskonekcja");
           var c = clients[i];
 
           if(c.clientId == socket.id){
+             if(c.type=="driver"){
+               driver.updateDriverUnavailable(c);
+             }
               clients.splice(i,1);
               break;
           }

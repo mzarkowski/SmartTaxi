@@ -3,7 +3,7 @@ var ST = ST || {};
 ST.Navigation = ST.Navigation || {};
 
 ST.Navigation.ClosePage = function (elem) {
-    $(elem).parent().parent().parent().addClass('hidden');
+	$('#getTaxi').toggle();
 };
 
 ST.Navigation.showPage = function (page) {
@@ -15,7 +15,7 @@ ST.Navigation.getMap = function () {
     ST.Geolocation.stopTracking();
     var value = $('#address').val();
     if (value === "") {
-        alert("Pole nie mo¿e byæ puste");
+        alert("Pole nie moÅ¼e byÄ‡ puste");
     } else {
         $('#map-canvas').removeClass('hidden');
         initializeMap(value);
@@ -24,7 +24,7 @@ ST.Navigation.getMap = function () {
 
 ST.Navigation.gpsAccurate = function () {
     ST.Ajax.getDrivers();
-    $('#gps').text("Twoja pozycja GPS jest dok³adna");
+    $('#gps').text("Twoja pozycja GPS jest dokÅ‚adna");
     $('#gettingGps').addClass('hidden');
 };
 
@@ -46,16 +46,6 @@ $('#appBar').on('mouseout', function () {
 });
 
 
-ST.Navigation.chooseDriver = function (elem, i) {
-    $('#appBar').addClass('appBarHidden');
-    $(elem).siblings().removeClass('driversItembackgroundSelected').addClass('driversItembackground');
-    $(elem).removeClass('driversItembackground');
-    $(elem).addClass('driversItembackgroundSelected');
-    ST.Drivers.driverSelected = ST.Drivers.Array[i];
-    ST.Drivers.who = i;
-    $('#details').text(ST.Drivers.driverSelected.name + ' - ' + ST.Drivers.driverSelected.bid + 'z³/km');
-};
-
 ST.Navigation.clearOrder = function() {
     $('#order').removeClass('hidden');
     $('#getTaxi').children('#invisible').removeClass('hidden');
@@ -71,10 +61,17 @@ ST.Navigation.CourseResponse = function(response) {
     }
     else {
         $('#step2').addClass('hidden');
-        $('#step3').removeClass('hidden');
+        ST.Navigation.clearOrder();
+        alert("TaksÃ³wkarz wysÅ‚any");
     }
 
 };
+
+ST.Navigation.courseEnded = function (response) {
+        alert("Kurs skoÅ„czony");
+        ST.Navigation.clearOrder();
+};
+
 ST.Navigation.confirmAdress = function () {
     var kolbak = function (button) {
         if (button === 0) {
@@ -82,7 +79,7 @@ ST.Navigation.confirmAdress = function () {
             $('#getTaxi').children('#invisible').addClass('hidden');
             $('#step2').removeClass('hidden');
             $('#appBar').addClass('hidden');
-            ST.Socket.socket.emit('getCourse', { 'client': ST.Socket.userID, 'driver': ST.Drivers.driverSelected.id, tel: $('#phone').val(), destination: $('#phone').val(), time: ST.Drivers.Time[ST.Drivers.who] });
+            ST.Socket.socket.emit('getCourse', { 'client': ST.Socket.userID, 'driver': ST.Drivers.driverSelected.id, tel: $('#phone').val(), destination: $('#destination').val(), time: "NiedostÄ™pny"});
             var seconds = 30;
             var secondsWord = "sekund";
             
@@ -108,9 +105,8 @@ ST.Navigation.confirmAdress = function () {
             return true;
         }
     };
-    var k = confirm("Czy na pewno chcesz zamówiæ taxi?", kolbak, "Potwierdziæ?", "Tak,Nie");
+    var k = confirm("Czy na pewno chcesz zamÃ³wiÄ‡ taxi?", kolbak, "PotwierdziÄ‡?", "Tak,Nie");
     if (k) {
         kolbak(0);
     }
 };
-

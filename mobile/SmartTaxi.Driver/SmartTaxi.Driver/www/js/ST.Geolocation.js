@@ -21,7 +21,7 @@ ST.Geolocation.onSuccess = function (position) {
         ST.Geolocation.minAccuracy = ST.Geolocation.accuracy;
         $('#positionUnavailable').addClass('hidden');
         $('#message').text("Twoja pozycja jest przekazywana. Czekaj na klientów.");
-        ST.Socket.socket.emit('updateDriverCoords', { driverId: ST.Drivers.driverId, longitude: position.coords.longitude, latitude: position.coords.latitude });
+        ST.Socket.socket.emit('updateDriverCoords', { driverId: ST.Drivers.driverId, longitude: position.coords.longitude, latitude: position.coords.latitude, isFree: ST.Navigation.isBusy});
     }
 };
 

@@ -1,4 +1,6 @@
 eclipse.preferences.version=1
+encoding//public/index.html=UTF-8
+encoding//public/js/ST.Navigation.js=UTF-8
 encoding//routes/drivers.js=UTF-8
 encoding/app.js=UTF-8
 encoding/package.json=UTF-8

@@ -150,6 +150,34 @@ exports.updateDriverStatusBusy = function(driver) {
 		});
 	});
 };
+
+exports.updateDriverAvailable = function(driver) {
+	var id = driver.customId;
+	db.collection('drivers', function(err, collection) {
+
+		collection.update({'_id':new BSON.ObjectID(id)}, { $set: {"isActive" : "true"}}, {safe:true}, function(err, result) {
+			if (err) {
+				console.log('Error : ' + err);
+			} else {
+				console.log('Zalogowano kierowcę: ' + id);
+			}
+		});
+	});
+};
+
+exports.updateDriverUnavailable = function(driver) {
+	var id = driver.customId;
+	db.collection('drivers', function(err, collection) {
+		//ZMIENIć na FALSE!
+		collection.update({'_id':new BSON.ObjectID(id)}, { $set: {"isActive" : "false"}}, {safe:true}, function(err, result) {
+			if (err) {
+				console.log('Error : ' + err);
+			} else {
+				console.log('Wylogowano kierowcę ' + id);
+			}
+		});
+	});
+};
  
 /* 
  * Przykładowe dane w razie czystki w bazie.

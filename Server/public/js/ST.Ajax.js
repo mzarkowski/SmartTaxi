@@ -21,29 +21,11 @@ ST.Ajax.send = function (url, method, parm, callBack) {
     });
     return;
 };
-ST.Ajax.getDrivers = function () {
-    return ST.Ajax.send(ST.Settings.ServerUri.Link + "drivers/available", "GET", "", function (data) { 
-        var coordsArray;
-        coordsArray = [];
-        ST.Drivers.Array = [];
-        $(".driversItem").remove();
-        $.each(data, function (i, value) {
-            $("#availableDrivers").append('<div class="driversItem list' + i + ' driversItembackground" onclick="ST.Navigation.chooseDriver(this,' + i + ')"><div class="photo"><img src="img/person.png" alt="Taxi" /></div><div class="driverName"></div><div class="driverCar"></div><div class="driverBid"></div><div class="driverTimeEstimate"></div><div class="historyUrl"></div></div>');
-            $(".list" + i + " .driverName").append("" + data[i].name + "");
-            $(".list" + i + " .driverCar").append("" + data[i].brand + ", " + data[i].year + "");
-            $(".list" + i + " .driverBid").append(" Stawka: " + data[i].bid + " z\u0142");
-            $(".list" + i + " .driverTimeEstimate").append("Czas oczekiwania: ");
-            coordsArray.push({
-                latitude: data[i].coords.latitude,
-                longitude: data[i].coords.longitude
-            });
-            ST.Drivers.Array.push(new ST.Drivers.Driver(data[i]._id, data[i].name, data[i].year, data[i].brand, data[i].bid));
-        });
-        $("#positionUnavailable").addClass("hidden");
-        ST.Navigation.chooseDriver(".list0", 0);
-        ST.Ajax.calculateTime(coordsArray);
-        $("#appBar").removeClass("hidden");
-    });
+ST.Ajax.getDriverInfo = function (id) {
+    $.getJSON("http://" + window.location.hostname + ":3000/api/drivers/" + id, function (json) {
+        $('#details').text(json.name + " - " + json.bid + "zl/km");
+        ST.Drivers.driverSelected.id = json._id;
+    });    
 };
 ST.Ajax.calculateTime = function (coordsArray) {
     var stringus = "";

@@ -2,6 +2,7 @@
 
 ST.Navigation = ST.Navigation || {};
 ST.Navigation.from = "";
+ST.Navigation.isBusy = "false";
 ST.Navigation.driverId = "";
 ST.Navigation.newCourse = function(data) {
     $('.page').removeClass('hidden');
@@ -21,11 +22,13 @@ ST.Navigation.step2 = function (response) {
         $('#step1').addClass("hidden");
         $('#step2').removeClass("hidden");
         initializeMap(ST.Navigation.destination);
+        ST.Navigation.isBusy = "true";
     }
     else {
         //Kierowca się nie zgadza
         ST.Socket.socket.emit('courseResponse', { response: 0, to: ST.Navigation.from, driverId: ST.Navigation.driverId });
         $('.page').addClass('hidden');
+        ST.Navigation.isBusy = "false";
     }
     
 };
@@ -33,6 +36,7 @@ ST.Navigation.step2 = function (response) {
 ST.Navigation.courseEnded = function() {
     $('.page').addClass('hidden');
     ST.Socket.socket.emit('courseEnded', { to: ST.Navigation.from, driverId: ST.Navigation.driverId });
+    ST.Navigation.isBusy = "true";
 };
 
 ST.Navigation.ClosePage = function (elem) {
