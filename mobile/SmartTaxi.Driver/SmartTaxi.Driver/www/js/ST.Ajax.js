@@ -28,23 +28,15 @@ ST.Ajax.send = function (url, method, parm, callBack) {
 ST.Ajax.getDrivers = function (parm) {
     return ST.Ajax.send("http://localhost:3000/api/drivers/login", "POST", parm, function (data) {
         
-        if (!(typeof !data[0] == "undefined")) {
+        if (!(typeof data[0] == "undefined")) {
             ST.Drivers.driverId = data[0]._id;
+            ST.Socket.socket.emit('storeClientInfo', { customId: ST.Drivers.driverId, type: "driver" });
             ST.Geolocation.getPosition();
-            ST.Socket.socket.on('connect', function(dat) {
-                ST.Socket.socket.emit('storeClientInfo', { customId: ST.Drivers.driverId, type: "driver" });
-            });
-            ST.Socket.socket.on('newCourse', function(dat) {
-                ST.Navigation.newCourse(data);
-            });
-            ST.Socket.socket.on('courseCanceledDriver', function(dat) {
-                $('.page').addClass('hidden');
-            });
             $('#login').addClass('hidden');
             $('#afterLogin').removeClass('hidden');
         }
         else {
-            alert('dupa');
+            alert('Nieprawidłowe hasło');
         }
 
     });

@@ -8,6 +8,9 @@ $(function () {
         ST.Socket.socket.on('connect', function (data) {
             ST.Socket.socket.emit('storeClientInfo', { customId: ST.Socket.userID, type: "client" });
         });
+        ST.Socket.socket.on('courseEnded', function (dat) {
+            ST.Navigation.courseEnded();
+        });
     }, false);
  
 

@@ -9,6 +9,7 @@ ST.Navigation.newCourse = function(data) {
     $('#tel').text('Numer telefonu: ' + data.tel);
     $('#time1').text($('#time').text());
     $('#tel1').text($('#tel').text());
+    $('#clientAdress').text(data.destination);
     ST.Navigation.from = data.client;
     ST.Navigation.driverId = data.driver;
     ST.Navigation.destination = data.destination;
@@ -19,6 +20,7 @@ ST.Navigation.step2 = function (response) {
         ST.Socket.socket.emit('courseResponse', { response: 1, to: ST.Navigation.from, driverId: ST.Navigation.driverId });
         $('#step1').addClass("hidden");
         $('#step2').removeClass("hidden");
+        initializeMap(ST.Navigation.destination);
     }
     else {
         //Kierowca się nie zgadza
@@ -26,6 +28,11 @@ ST.Navigation.step2 = function (response) {
         $('.page').addClass('hidden');
     }
     
+};
+
+ST.Navigation.courseEnded = function() {
+    $('.page').addClass('hidden');
+    ST.Socket.socket.emit('courseEnded', { to: ST.Navigation.from, driverId: ST.Navigation.driverId });
 };
 
 ST.Navigation.ClosePage = function (elem) {
@@ -81,35 +88,6 @@ ST.Navigation.chooseDriver = function (elem,i) {
     $('#details').text(ST.Drivers.driverSelected.name + ' - ' + ST.Drivers.driverSelected.bid + 'zł/km');
 };
 
-ST.Navigation.confirmAdress = function () {
-    var kolbak = function(button) {
-        if (button == 0) {
-            $('#order').addClass('hidden');
-            $('#getTaxi').children('#invisible').addClass('hidden');
-            $('#step2').removeClass('hidden');
-            $('#appBar').addClass('hidden');
-            ST.Socket.socket.emit('getCourse', { driver: ST.Drivers.driverSelected._id, from: ST.Socket.userId});
-            var seconds = 30;
-            var secondsWord = "sekund";
-            var timeRemaining = window.setInterval(function () {
-                
-                if (seconds === 3) secondsWord = "sekundy";
-                if (seconds === 1) secondsWord = "sekunda";
-                $('#timer').text(seconds-- + " " + secondsWord);
-                
-                if (seconds === 0) {
-                    window.clearInterval(timeRemaining);
-                }
-            }, 1000);
-            
-            return true;
-        }
-    };
-    var k = confirm("Czy na pewno chcesz zamówić taxi?", kolbak, "Potwierdzić?", "Tak,Nie");
-    if (k) {
-        kolbak(0); }
-    ;
-};
 
 
 ST.Navigation.login = function() {

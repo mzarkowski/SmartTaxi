@@ -124,11 +124,24 @@ exports.updateDriverCoords = function(driver) {
 	});
 };
 
-exports.updateDriverStatus = function(driver) {
+exports.updateDriverStatusFree = function(driver) {
 	var id = driver.driverId;
 	db.collection('drivers', function(err, collection) {
 		//ZMIENIć na FALSE!
 		collection.update({'_id':new BSON.ObjectID(id)}, { $set: {"isFree" : "true"}}, {safe:true}, function(err, result) {
+			if (err) {
+				console.log('Error : ' + err);
+			} else {
+				console.log('Kierowca ma kurs: ' + id);
+			}
+		});
+	});
+};
+exports.updateDriverStatusBusy = function(driver) {
+	var id = driver.driverId;
+	db.collection('drivers', function(err, collection) {
+		//ZMIENIć na FALSE!
+		collection.update({'_id':new BSON.ObjectID(id)}, { $set: {"isFree" : "false"}}, {safe:true}, function(err, result) {
 			if (err) {
 				console.log('Error : ' + err);
 			} else {

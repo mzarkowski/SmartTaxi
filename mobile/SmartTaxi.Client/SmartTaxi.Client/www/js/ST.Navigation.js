@@ -75,6 +75,12 @@ ST.Navigation.CourseResponse = function(response) {
     }
 
 };
+
+ST.Navigation.courseEnded = function (response) {
+        alert("Kurs skończony");
+        ST.Navigation.clearOrder();
+};
+
 ST.Navigation.confirmAdress = function () {
     var kolbak = function (button) {
         if (button == 0) {
@@ -82,7 +88,7 @@ ST.Navigation.confirmAdress = function () {
             $('#getTaxi').children('#invisible').addClass('hidden');
             $('#step2').removeClass('hidden');
             $('#appBar').addClass('hidden');
-            ST.Socket.socket.emit('getCourse', { 'client': ST.Socket.userID, 'driver': ST.Drivers.driverSelected.id, tel: $('#phone').val(), destination: $('#phone').val(), time: ST.Drivers.Time[ST.Drivers.who] });
+            ST.Socket.socket.emit('getCourse', { 'client': ST.Socket.userID, 'driver': ST.Drivers.driverSelected.id, tel: $('#phone').val(), destination: $('#destination').val(), time: ST.Drivers.Time[ST.Drivers.who] });
             var seconds = 30;
             var secondsWord = "sekund";
             

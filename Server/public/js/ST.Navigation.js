@@ -1,4 +1,4 @@
-ï»¿var ST = ST || {};
+var ST = ST || {};
 
 ST.Navigation = ST.Navigation || {};
 
@@ -14,8 +14,8 @@ ST.Navigation.showPage = function (page) {
 ST.Navigation.getMap = function () {
     ST.Geolocation.stopTracking();
     var value = $('#address').val();
-    if (value == "") {
-        alert("Pole nie moÅ¼e byÄ‡ puste");
+    if (value === "") {
+        alert("Pole nie mo¿e byæ puste");
     } else {
         $('#map-canvas').removeClass('hidden');
         initializeMap(value);
@@ -24,7 +24,7 @@ ST.Navigation.getMap = function () {
 
 ST.Navigation.gpsAccurate = function () {
     ST.Ajax.getDrivers();
-    $('#gps').text("Twoja pozycja GPS jest dokÅ‚adna");
+    $('#gps').text("Twoja pozycja GPS jest dok³adna");
     $('#gettingGps').addClass('hidden');
 };
 
@@ -53,7 +53,7 @@ ST.Navigation.chooseDriver = function (elem, i) {
     $(elem).addClass('driversItembackgroundSelected');
     ST.Drivers.driverSelected = ST.Drivers.Array[i];
     ST.Drivers.who = i;
-    $('#details').text(ST.Drivers.driverSelected.name + ' - ' + ST.Drivers.driverSelected.bid + 'zÅ‚/km');
+    $('#details').text(ST.Drivers.driverSelected.name + ' - ' + ST.Drivers.driverSelected.bid + 'z³/km');
 };
 
 ST.Navigation.clearOrder = function() {
@@ -65,7 +65,7 @@ ST.Navigation.clearOrder = function() {
 };
 
 ST.Navigation.CourseResponse = function(response) {
-    if(response == 0) {
+    if(response === 0) {
         alert("Kierowca nie przyjedzie");
         ST.Navigation.clearOrder();
     }
@@ -77,7 +77,7 @@ ST.Navigation.CourseResponse = function(response) {
 };
 ST.Navigation.confirmAdress = function () {
     var kolbak = function (button) {
-        if (button == 0) {
+        if (button === 0) {
             $('#order').addClass('hidden');
             $('#getTaxi').children('#invisible').addClass('hidden');
             $('#step2').removeClass('hidden');
@@ -108,10 +108,9 @@ ST.Navigation.confirmAdress = function () {
             return true;
         }
     };
-    var k = confirm("Czy na pewno chcesz zamÃ³wiÄ‡ taxi?", kolbak, "PotwierdziÄ‡?", "Tak,Nie");
+    var k = confirm("Czy na pewno chcesz zamówiæ taxi?", kolbak, "Potwierdziæ?", "Tak,Nie");
     if (k) {
         kolbak(0);
     }
-    ;
 };
 

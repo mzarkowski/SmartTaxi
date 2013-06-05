@@ -6,6 +6,8 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <title>SmartTaxi</title>
+        <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwAyHXZcKkol-hk8dI0dYfcG7VIGoVNjU&sensor=false"></script>
     </head>
     <body>
         <div id="login">
@@ -47,10 +49,10 @@
                     <p class="bold" style="font-size: large">Masz kurs</p>
                     <p id="time1">Szac. czas dojazdu: 5 min</p>
                     <p id="tel1">Numer telefonu: 885 446 104</p>
-                    <p>Jedź tutaj: </p>
+                    <p id="clientAdress">Jedź tutaj: </p>
                     <div id="map-canvas">
                     </div>
-                    <p class="button">Kurs skończony</p>
+                    <p class="button" onclick="ST.Navigation.courseEnded()">Kurs skończony</p>
                 </div>
             </div>
         </div>
@@ -62,6 +64,7 @@
         <!--globalne skrypty-->
         <script type="text/javascript" src="js/ST.Settings.js"></script>
         <script type="text/javascript" src="js/ST.Drivers.js"></script>
+        <script type="text/javascript" src="js/ST.Map.js"></script>
         <script type="text/javascript" src="js/ST.Ajax.js"></script>
         <script type="text/javascript" src="js/ST.Navigation.js"></script>
         <script type="text/javascript" src="js/ST.Geolocation.js"></script>

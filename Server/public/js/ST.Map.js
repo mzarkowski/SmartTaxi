@@ -1,11 +1,11 @@
-ï»¿var initializeMap = function (address) {
+var initializeMap = function (address) {
 Geocoder = new google.maps.Geocoder();
     Geocoder.geocode({ 'address': address }, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
             ST.Geolocation.latitude = results[0].geometry.location.lat();
             ST.Geolocation.longitude = results[0].geometry.location.lng();
             ST.Ajax.getDrivers();
-            $('#gps').text("UÅ¼ywasz rÄ™cznego adresu. Kliknij, aby uÅ¼yÄ‡ GPS");
+            $('#gps').text("U¿ywasz rêcznego adresu. Kliknij, aby u¿yæ GPS");
             mapFunction(results[0].geometry.location);
         } else {
             

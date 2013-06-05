@@ -67,7 +67,7 @@ io.sockets.on('connection', function(socket){
 	});
 	
 	socket.on('getCourse', function(data){
-		console.log("Wysłano żądanie o kurs");
+		console.log("Wysłano żądanie o kurs do " + data.driver);
 		var driver = null;
 		//uzyskanie socketa kierowcy
 		var len=clients.length;
@@ -78,13 +78,13 @@ io.sockets.on('connection', function(socket){
 				break;
 			}
 		}
+		console.log("Id sokieta " + driver);
 		io.sockets.socket(driver).emit('newCourse', data);
-		//io.sockets.emit('course', {'client': data.});
 	});
 	
 	socket.on('courseCanceled', function(data){
 		var driver = null;
-		//uzyskanie socketa kierowcy
+		//uzyskanie socketa
 		var len=clients.length;
 		for( var i=0; i<len; ++i ){
 			var c = clients[i];
@@ -97,6 +97,7 @@ io.sockets.on('connection', function(socket){
 		io.sockets.socket(driver).emit('courseCanceledDriver', data);
 		//io.sockets.emit('course', {'client': data.});
 	});
+	
 	
 	socket.on('courseResponse', function(data){
 		var client = null;
@@ -111,9 +112,28 @@ io.sockets.on('connection', function(socket){
 		}
 		console.log("Dostano odpowiedź od kierowcy");
 		if(data.response === 1){
-			driver.updateDriverStatus(data);
+			driver.updateDriverStatusBusy(data);
 		}
 		io.sockets.socket(client).emit('courseResponseToClient', {'from' : client, 'response' : data.response});
+	});
+	
+	socket.on('courseEnded', function(data){
+		var client = null;
+		//uzyskanie socketa klienta
+		var len=clients.length;
+		for( var i=0; i<len; ++i ){
+			var c = clients[i];
+			if(c.customId == data.to){
+				client = c.clientId;
+				break;
+			}
+		}
+		console.log("Kurs zakończony");
+		//dopisać zmianę statusu
+		if(data.response === 1){
+			driver.updateDriverStatusFree(data);
+		}
+		io.sockets.socket(client).emit('courseEnded', data);
 	});
 	
 	socket.on('updateDriverCoords', function(data){

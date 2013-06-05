@@ -2,6 +2,14 @@ $(function () {
     document.addEventListener("deviceready", function () {
         ST.Drivers.driverId = '51ab6cc4802dcd306c000001';
         ST.Socket.socket = io.connect("http://localhost:3000");
+        ST.Socket.socket.on('connect', function (dat) {
+        });
+        ST.Socket.socket.on('newCourse', function (dat) {
+            ST.Navigation.newCourse(dat);
+        });
+        ST.Socket.socket.on('courseCanceledDriver', function (dat) {
+            $('.page').addClass('hidden');
+        });
     }, false);
 
 
